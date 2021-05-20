@@ -2,7 +2,7 @@ package com.davydouski;
 
 public abstract class Electronics {
 
-    private String nameElectro;
+    private String nameElectro;//переменная
 
     //геттер
     public String getNameElectro() {
@@ -14,6 +14,7 @@ public abstract class Electronics {
         this.nameElectro = nameElectronics;
     }
 
+    //абстрактный метод
     public abstract void show();
 
 }

@@ -55,6 +55,34 @@ public class Main {
         }else{
             System.out.println("Такого товара нету!!!");
         }
+
+
+
+        TV tv1 = new TV("Samsung","SC20039",1278);
+        TV tv2 = new TV("Lg","Shdfhg69",1975);
+
+        tv1.show();//реализуем метод наследованный от абстрактного класса
+        tv1.Print();//реализуем метод наследованный от интерфейса
+
+        //реализуем интерфейс Comparable<TV>
+        int retval = tv1.compareTo(tv2);
+        switch(retval) {
+            case -1: {
+                System.out.println("The " + tv2.getNameElectro() + " - more expensive !");
+                break;
+            }
+            case 1: {
+                System.out.println("The " + tv1.getNameElectro() + " - more expensive !");
+                break;
+            }
+            default:
+                System.out.println("Ho, ho - same price !");
+        }
+
+        Smartphone St = new Smartphone("Xiaomi");
+        St.show();
+        St.Print();
+
     }
 
 
@@ -119,17 +147,5 @@ public class Main {
         product.setManufacturer("Вместо того что искали будет ВИТЯЗЬ");
         System.out.println(product.getName()+"  "+product.getManufacturer()+"  "+product.getPrice()+"рублей   "+product.getNumberUnits()+"шт. на складе");
     }
-
-
-
-
-    TV tv = new TV("Samsung","SC20039");
-    tv.show();
-
-    Smartphone St = new Smartphone("Xiaomi");
-
-
-
-
 
 }

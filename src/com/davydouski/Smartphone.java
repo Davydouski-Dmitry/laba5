@@ -1,6 +1,6 @@
 package com.davydouski;
 
-public class Smartphone extends Electronics{
+public class Smartphone extends Electronics implements Printable,Comparable{
 
 
     public Smartphone(String name) {
@@ -9,6 +9,16 @@ public class Smartphone extends Electronics{
 
     @Override
     public void show() {
-        System.out.println("Smartphone");
+        System.out.println("Smartphone - " + super.getNameElectro());
+    }
+
+    @Override
+    public void Print() {
+        System.out.println("Объект класса Smartphone ");
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
