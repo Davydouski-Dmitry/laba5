@@ -124,7 +124,10 @@ public class Main {
 
 
     TV tv = new TV("Samsung","SC20039");
+    tv.show();
+
     Smartphone St = new Smartphone("Xiaomi");
+
 
 
 

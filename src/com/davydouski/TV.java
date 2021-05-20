@@ -10,7 +10,9 @@ public class TV extends Electronics{
         this.model = modelTv;
     }
 
+
     public void show() {
-        System.out.println("Телевизор");
+        System.out.println(super.getNameElectro() + "Телевизор модели: "+model);
     }
+
 }
