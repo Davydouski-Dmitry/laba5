@@ -1,6 +1,11 @@
 package com.davydouski;
 
-public class Smartphone extends Electronics implements Printable,Comparable{
+
+import java.io.Serializable;
+import java.util.Date;
+
+
+public class Smartphone extends Electronics implements Printable,Comparable {
 
 
     public Smartphone(String name) {

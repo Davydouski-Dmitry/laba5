@@ -3,6 +3,11 @@ package com.davydouski;
 //реализовать алгоритм работы с массивом данных объектов
 //второй класс магазин, тут массив товаров
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Main {
@@ -82,6 +87,33 @@ public class Main {
         Smartphone St = new Smartphone("Xiaomi");
         St.show();
         St.Print();
+
+
+
+
+
+        //сериализация
+        String filename = "time.ser";
+        if(args.length>0){
+            filename=args[0];
+        }
+        HowTime time = new HowTime();
+        FileOutputStream fos = null;
+        ObjectOutputStream out = null;
+        try{
+            fos = new FileOutputStream(filename);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(time);
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Cохранённое время: "+time.getTime());
+        System.out.println(" ");
+        System.out.println("Текущее время: "+ Calendar.getInstance().getTime());
 
     }
 
