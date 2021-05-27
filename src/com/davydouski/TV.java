@@ -14,12 +14,13 @@ public class TV extends Electronics implements Printable,Comparable<TV>{
 
 
     public void show() {
+        System.out.println(" Сейчас посмотрим на метод show() наследованный от абстрактного класса");
         System.out.println(model + " - модель");
     }
 
     @Override
     public void Print() {
-        System.out.println("Телевизор" + super.getNameElectro() + " модели: "+ model);
+        System.out.println(" Телевизор " + super.getNameElectro() + " модели: "+ model);
     }
 
     @Override

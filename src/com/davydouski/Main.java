@@ -7,8 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -16,7 +19,9 @@ public class Main {
 
         System.out.println("Cтудент гр.Пв1-20ПО  Давыдовский Д.С.  Вариант4 ");
 
+
         Product[] products = new Product[5];//массив товаров обявляем и заполняем сами
+
         products[0] = new Product("ноутбук","hp",12,3600);
         products[1] = new Product("ноутбук","asus",2,2600);
         products[2] = new Product("ноутбук","lg",4,2100);
@@ -24,13 +29,19 @@ public class Main {
         products[4] = new Product("ноутбук","lenovo",9,1900);
 
 
+        //  0.определяем сколько объектов класса мы создали
+        System.out.println("Количество созданных объектов = " + Product.getCounter());
+
         //  1.определить товары с максимальным количеством единиц;
+        System.out.println("1.Определить товары с максимальным количеством единиц на складе:");
         int numberMAX = numberUnitsMAX(products);
         System.out.println("Фирма ноутбуков с максимальным количеством единиц на складе в наличии:");
         showProduct(products[numberMAX]);
 
 
         //  2.определить среднюю цену товаров
+        System.out.println("2.Определить среднюю цену товаров, " +
+                "и количество товаров с ценой нижесредней:");
         System.out.println("Cредняя цена на товары =" + srProduct(products));
         // и количество товаров с ценой нижесредней;
         System.out.println("\n Количество товаров с ценой нижесредней: ");
@@ -43,6 +54,7 @@ public class Main {
 
 
         // 3.упорядочить список по убыванию цен товаров
+        System.out.println("\n 3.Упорядочить список по убыванию цен товаров от большей к меньшей:");
         sortProduct(products);
         System.out.println("\n Отсортированный список по убыванию цен товаров: ");
         shProduct(products);
@@ -50,7 +62,9 @@ public class Main {
 
         // 4. организовать поиск по наименованию товара, исправление одного из его полей
         // и вывод полной информации о товаре после радактирования
-        System.out.println("Введите название товара: ");
+        System.out.println("4. организовать поиск по наименованию товара, исправление одного из его полей\n" +
+                "        и вывод полной информации о товаре после радактирования:");
+        System.out.print("Введите название товара: ");
         Scanner sr = new Scanner(System.in);
         sr.nextLine();
         String smanufacturer = sr.nextLine();
@@ -70,26 +84,24 @@ public class Main {
         tv1.Print();//реализуем метод наследованный от интерфейса
 
         //реализуем интерфейс Comparable<TV>
+        System.out.println("Реализуем интерфейс Comparable<TV> и сравним");
         int retval = tv1.compareTo(tv2);
         switch(retval) {
             case -1: {
-                System.out.println("The " + tv2.getNameElectro() + " - more expensive !");
+                System.out.println("Этот " + tv2.getNameElectro() + " - более дорогой !");
                 break;
             }
             case 1: {
-                System.out.println("The " + tv1.getNameElectro() + " - more expensive !");
+                System.out.println("Этот " + tv1.getNameElectro() + " - более дорогой !");
                 break;
             }
             default:
-                System.out.println("Ho, ho - same price !");
+                System.out.println("Ого одинаковая цена !");
         }
 
         Smartphone St = new Smartphone("Xiaomi");
         St.show();
         St.Print();
-
-
-
 
 
         //сериализация
@@ -110,12 +122,24 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Cохранённое время: "+time.getTime());
-        System.out.println(" ");
+        System.out.println("Сериализация объекта:");
         System.out.println("Текущее время: "+ Calendar.getInstance().getTime());
 
+
+
+//метод проверяющий скорость поиска по ArrayList и LinkedList
+        compareLists();
+
     }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -176,8 +200,36 @@ public class Main {
     //исправление одного из его полей
     //и вывод полной информации о товаре после радактирования
     private static void showProduct2(Product product) {
-        product.setManufacturer("Вместо того что искали будет ВИТЯЗЬ");
+        product.setManufacturer(" это поле исправим на - ВИТЯЗЬ");
         System.out.println(product.getName()+"  "+product.getManufacturer()+"  "+product.getPrice()+"рублей   "+product.getNumberUnits()+"шт. на складе");
     }
+
+
+//метод проверяющий скорость поиска по ArrayList и LinkedList
+    public static void compareLists() {
+        ArrayList<Double> arrayList = new ArrayList<>();
+        LinkedList<Double> linkedList = new LinkedList<>();
+        final int number = 10000000;
+        final int mrandom = 500;
+        for (int i = 0; i < number; i++) {
+            arrayList.add(Math.random());
+            linkedList.add(Math.random());
+        }
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < mrandom; i++) {
+            arrayList.get((int) (Math.random() * (number - 1)));
+        }
+        System.out.println("Время затраченое в миллисекундах на поиск по ArrayList нужных чисел - "+(System.currentTimeMillis() - startTime));
+
+
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < mrandom; i++) {
+            linkedList.get((int) (Math.random() * (number - 1)));
+        }
+        System.out.println("Время затраченое в миллисекундах на поиск по linkedList нужных чисел - "+(System.currentTimeMillis() - startTime));
+    }
+
+
+
 
 }

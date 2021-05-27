@@ -11,12 +11,30 @@ public class Product {
     private int price;              //цена
 
 
+    private static int counter;//счётчик объектов
+    //инициализатор
+    static{
+        counter=0;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+
     //конструктор класса товары
     public Product(String name, String manufacturer, int numberUnits, int price) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.numberUnits = numberUnits;
         this.price = price;
+        counter++;
+    }
+//еще один конструктор
+    public Product(String name, String manufacturer, int numberUnits) {
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.numberUnits = numberUnits;
     }
 
 
@@ -52,6 +70,7 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
 
 
 
