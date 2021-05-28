@@ -1,8 +1,5 @@
 package com.davydouski;
 
-//реализовать алгоритм работы с массивом данных объектов
-//второй класс магазин, тут массив товаров
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,15 +15,18 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Cтудент гр.Пв1-20ПО  Давыдовский Д.С.  Вариант4 ");
+        Product[] products = new Product[5];
 
 
-        Product[] products = new Product[5];//массив товаров обявляем и заполняем сами
 
-        products[0] = new Product("ноутбук","hp",12,3600);
-        products[1] = new Product("ноутбук","asus",2,2600);
-        products[2] = new Product("ноутбук","lg",4,2100);
-        products[3] = new Product("ноутбук","macbook",1,5600);
-        products[4] = new Product("ноутбук","lenovo",9,1900);
+        //массив товаров обявляем и заполняем сами
+        Store store = new Store(new Product[]{
+                products[0] = new Product("ноутбук","hp",12,3600),
+                products[1] = new Product("ноутбук","asus",2,2600),
+                products[2] = new Product("ноутбук","lg",4,2100),
+                products[3] = new Product("ноутбук","macbook",1,5600),
+                products[4] = new Product("ноутбук","lenovo",9,1900)
+        });
 
 
         //  0.определяем сколько объектов класса мы создали
@@ -205,11 +205,15 @@ public class Main {
     }
 
 
+
+
+
+
 //метод проверяющий скорость поиска по ArrayList и LinkedList
     public static void compareLists() {
         ArrayList<Double> arrayList = new ArrayList<>();
         LinkedList<Double> linkedList = new LinkedList<>();
-        final int number = 10000000;
+        final int number = 1000000;
         final int mrandom = 500;
         for (int i = 0; i < number; i++) {
             arrayList.add(Math.random());
